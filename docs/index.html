@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Katherine Feemster — Scientific Visualization (ParaView) Specialist</title>
+  <meta name="description" content="Senior scientific visualization portfolio — ParaView, VTK, Catalyst in-situ, custom plugins, CFD and FEM post-processing, volume rendering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">◐</span>
+      <span>Katherine Feemster</span>
+    </a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#code">Code</a>
+      <a href="#stack">Stack</a>
+      <a href="#about">About</a>
+      <a class="btn btn-outline" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">ParaView · VTK · Catalyst · CFD &amp; FEM post · in-situ HPC</p>
+        <h1>I turn <span class="accent">terabyte-scale simulations</span> into pictures scientists can defend.</h1>
+        <p class="lede">
+          A decade across <b>ParaView, VTK, Catalyst, CFD and FEM post-processing</b>. Most of my pipelines are scripts because a state file you can diff is a visualization you can reproduce.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#work">See the work</a>
+          <a class="btn btn-ghost" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio" target="_blank" rel="noopener">Browse the repo</a>
+        </div>
+      </div>
+      <figure class="hero-art">
+        <img src="assets/q_isosurface.png" alt="Q-criterion isosurface of a Taylor-Green vortex, rendered in VTK" />
+        <figcaption>Q-criterion isosurface of a Taylor-Green vortex — rendered live from <code>render_figures.py</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="wrap strip-inner">
+      <span>ParaView</span>
+      <span>VTK</span>
+      <span>Catalyst v2</span>
+      <span>pvpython / pvbatch</span>
+      <span>CFD post (OpenFOAM, SU2)</span>
+      <span>FEM (Abaqus, CalculiX, FEniCS)</span>
+      <span>Volume rendering</span>
+      <span>In-situ HPC</span>
+      <span>XDMF / CGNS / EnSight</span>
+      <span>Plugin development</span>
+      <span>Python · C++</span>
+      <span>MPI / GPU rendering</span>
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="wrap">
+      <h2>Selected projects</h2>
+      <p class="section-lede">Five projects that together cover the scientific-visualization stack — from raw simulation data through interactive analysis, custom filters, and in-situ pipelines that run inside the solver.</p>
+
+      <div class="cards">
+
+        <article class="card feature">
+          <div class="card-media">
+            <img src="assets/streamlines.png" alt="RK4 streamlines through a Taylor-Green vortex, colored by velocity magnitude" />
+          </div>
+          <div class="card-body">
+            <p class="tag">CFD post · vortex identification · VTK</p>
+            <h3>Turbulent flow visualization (Taylor-Green vortex)</h3>
+            <p>The reference workload for any CFD post-processing pipeline. A 64³ analytic vortex field, a Q-criterion derived from velocity gradients, an isosurface for vortex cores, and RK4-integrated streamlines tubed and colored by speed. Every step is scripted — <code>.vti</code> output drops straight into ParaView.</p>
+            <p class="meta">64³ grid · Q-criterion · RK4 stream tracer · custom teal→amber transfer function · all rendered headlessly from VTK</p>
+            <a class="link" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio/tree/main/projects/turbulent-flow-visualization" target="_blank" rel="noopener">Read the case study →</a>
+          </div>
+        </article>
+
+        <article class="card feature reverse">
+          <div class="card-media">
+            <img src="assets/warp_by_vector.png" alt="Notched cantilever beam, mesh visible, warped by displacement and colored by von Mises stress" />
+          </div>
+          <div class="card-body">
+            <p class="tag">FEM post · unstructured mesh · warp-by-vector</p>
+            <h3>FEM stress field on a notched cantilever</h3>
+            <p>End-to-end FEM-to-ParaView workflow: build a tetrahedralised notched beam (~78k cells), attach a mechanically consistent stress tensor with a notch concentration, derive the von Mises invariant per point, and render both the static field and the warped deflected shape. Includes the percentile clip every junior engineer learns the hard way.</p>
+            <p class="meta">78,300 tets · σ_xx, τ_xy, von Mises, displacement · binary <code>.vtu</code> · 5–95 percentile colormap clip</p>
+            <a class="link" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio/tree/main/projects/fem-stress-field" target="_blank" rel="noopener">Read the case study →</a>
+          </div>
+        </article>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-media">
+              <img src="assets/volume_render.png" alt="Volume rendering of a synthetic atmospheric plume" />
+            </div>
+            <div class="card-body">
+              <p class="tag">Volume rendering · transfer functions</p>
+              <h3>Volumetric scalar field — atmospheric plume</h3>
+              <p>96³ procedural plume, exported to <code>.vti</code>, rendered with a hand-tuned color + opacity transfer function. Companion isocontour view at three nested levels for quantitative readability.</p>
+              <a class="link" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio/tree/main/projects/volumetric-scalar-field" target="_blank" rel="noopener">Case study →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <p class="tag">Plugin · vtkPythonProgrammableFilter</p>
+              <h3>ParaView custom plugin — vorticity + auto seeds</h3>
+              <p>Server-manager XML proxy plus Python module that adds a single new filter: compute vorticity on any vector array on any topology, and emit the top-N highest-vorticity points as a <code>vtkPolyData</code> ready for Stream Tracer With Custom Source.</p>
+              <a class="link" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio/tree/main/projects/paraview-custom-plugin" target="_blank" rel="noopener">Case study →</a>
+            </div>
+          </article>
+
+          <article class="card accent-card">
+            <div class="card-body">
+              <p class="tag">Catalyst v2 · in-situ · HPC</p>
+              <h3>Catalyst in-situ pipeline</h3>
+              <p>A toy time-stepping driver and a Catalyst v2 adaptor that contours, color-maps, and screenshots in-process — the strategy whenever the solver produces more data per step than disk can hold.</p>
+              <a class="link" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio/tree/main/projects/catalyst-in-situ" target="_blank" rel="noopener">Case study →</a>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="code" class="section dark">
+    <div class="wrap">
+      <h2>Code you can actually run</h2>
+      <p class="section-lede">Every figure on this page is regenerated by GitHub Actions on every push — never pre-baked. No proprietary data, no commercial solver licenses required. Clone the repo, install VTK, get the same picture.</p>
+
+      <div class="code-grid">
+        <div class="code-card">
+          <h4>Taylor-Green vortex — VTK</h4>
+          <pre><code>python scripts/python/taylor_green_vortex.py</code></pre>
+          <p>Builds the 64³ velocity field, derives Q-criterion, writes <code>.vti</code>, renders the isosurface and streamlines.</p>
+        </div>
+        <div class="code-card">
+          <h4>FEM stress on a notched beam</h4>
+          <pre><code>python scripts/python/fem_stress_field.py</code></pre>
+          <p>Tetrahedralises the beam, attaches σ + displacement, writes <code>.vtu</code>, renders the von Mises view and the warp-by-vector view.</p>
+        </div>
+        <div class="code-card">
+          <h4>Volumetric scalar field</h4>
+          <pre><code>python scripts/python/volumetric_scalar.py</code></pre>
+          <p>96³ procedural plume, GPU volume render with a custom opacity ramp, plus an isocontour view at three levels.</p>
+        </div>
+        <div class="code-card">
+          <h4>Regenerate all portfolio figures</h4>
+          <pre><code>python scripts/python/render_figures.py</code></pre>
+          <p>Rebuilds every PNG that ships in <code>/docs/assets</code> — what GitHub Actions runs on every push.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 36px;">
+        <figure class="hero-art" style="background: #0F1A1F; padding: 22px;">
+          <img src="assets/von_mises.png" alt="von Mises stress on a notched cantilever beam" />
+          <figcaption style="color: #B8BFC4;">von Mises stress on the notched cantilever — note the concentration at the notch root, clipped to the 5–95 percentile band so the field stays readable.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="section">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="stack-grid">
+        <div><h4>ParaView</h4><p>Daily driver since 4.x. State files, pvbatch, pvpython, multi-view layouts, custom transfer functions, programmable filters and sources.</p></div>
+        <div><h4>VTK</h4><p>C++ and Python. Image data, structured/unstructured grids, polydata, vtkAlgorithm subclassing for custom filters. Headless OSMesa rendering for CI.</p></div>
+        <div><h4>Plugin development</h4><p>Server-manager XML proxies, Python plugins, C++ plugins via vtkPVPluginLoader. Shipped plugins to Slurm clusters and Windows workstations.</p></div>
+        <div><h4>In-situ &amp; HPC</h4><p>Catalyst v2 adaptors with Conduit, Catalyst Live for steering. ParaView client–server over MPI. GPU offload via OSMesa / EGL.</p></div>
+        <div><h4>Solver formats</h4><p>OpenFOAM, SU2, CGNS, EnSight Gold, XDMF, Exodus II, NetCDF, HDF5. Ensemble post-processing and time-series analysis.</p></div>
+        <div><h4>Code &amp; CI</h4><p>Python (numpy, scipy, vtk, paraview), C++17. Git, GitHub Actions, Docker. Every analysis is a script — diffable, reviewable, reproducible.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <div class="wrap about-inner">
+      <div>
+        <h2>About</h2>
+        <p>I'm a senior scientific-visualization specialist with ten years across ParaView, VTK, and Catalyst, doing CFD and FEM post-processing for [Company, years] and in-situ visualization for HPC simulations at [Company, years]. I care about reproducible pipelines, transfer functions that don't lie, plugins that ship cleanly, and visualizations that still render the same way a year from now.</p>
+        <p>Open to remote and contract engagements in scientific visualization, CFD/FEM post-processing, or HPC in-situ workflows. The repository linked below is the living portfolio companion to my CV.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio" target="_blank" rel="noopener">Portfolio on GitHub</a>
+          <a class="btn btn-ghost" href="https://github.com/katherinejenniferhsfeemster" target="_blank" rel="noopener">@katherinejenniferhsfeemster</a>
+        </div>
+      </div>
+      <aside class="side-card">
+        <h4>At a glance</h4>
+        <ul>
+          <li>10 years across ParaView, VTK, and Catalyst</li>
+          <li>CFD &amp; FEM post-processing daily</li>
+          <li>Every figure on this site is regenerated in CI</li>
+          <li>No proprietary solver data — analytic and synthetic only</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 Katherine Feemster. Built with ParaView, VTK, and a lot of Python.</span>
+    <a href="https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>

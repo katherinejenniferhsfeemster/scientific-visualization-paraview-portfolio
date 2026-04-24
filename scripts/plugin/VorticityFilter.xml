@@ -1,0 +1,59 @@
+<ServerManagerConfiguration>
+  <!--
+    Custom ParaView server-manager plugin: VorticityMagnitudeWithSeeds
+    Computes ||curl(velocity)|| on a vector field, then builds an
+    automatic streamline seed list at the highest-vorticity points.
+
+    Install:
+        Tools -> Manage Plugins -> Load New
+        select VorticityFilter.xml (and place vorticity_module.py beside it)
+  -->
+  <ProxyGroup name="filters">
+    <SourceProxy name="VorticityMagnitudeWithSeeds"
+                 class="vtkPythonProgrammableFilter"
+                 label="Vorticity + Auto Seeds">
+      <Documentation
+        long_help="Computes vorticity magnitude and emits a seed PolyData of the top-N highest-vorticity points for streamline integration."
+        short_help="Vorticity magnitude + auto seeds">
+      </Documentation>
+
+      <InputProperty name="Input" command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkImageData"/>
+          <DataType value="vtkStructuredGrid"/>
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+      </InputProperty>
+
+      <StringVectorProperty name="VectorArrayName"
+                            command="SetParameter"
+                            number_of_elements="2"
+                            default_values="VectorArrayName velocity">
+        <Documentation>Name of the input vector field (e.g. "velocity").</Documentation>
+      </StringVectorProperty>
+
+      <IntVectorProperty name="NumberOfSeeds"
+                         command="SetParameter"
+                         number_of_elements="2"
+                         default_values="NumberOfSeeds 64">
+      </IntVectorProperty>
+
+      <StringVectorProperty name="Script" command="SetScript"
+                            number_of_elements="1">
+        <Hints><Widget type="multi_line"/></Hints>
+        <Documentation>Body of the filter (loaded from vorticity_module.py).</Documentation>
+      </StringVectorProperty>
+
+      <StringVectorProperty name="OutputDataSetType"
+                            command="SetOutputDataSetType"
+                            number_of_elements="1"
+                            default_values="0">
+        <!-- 0 = vtkPolyData -->
+      </StringVectorProperty>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
