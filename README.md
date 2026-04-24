@@ -1,62 +1,110 @@
-# Scientific Visualization (ParaView) — Portfolio
+<div align="center">
 
-Senior portfolio for a Scientific Visualization (ParaView) Specialist role.
-Live site: **https://katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio/**
+# Scientific Visualization (ParaView) Portfolio
 
-Every figure on the live site is regenerated headlessly from VTK on every
-push — no patient data, no proprietary solver outputs, no
-commercial-license dependencies. Clone, install `vtk`, get the same PNGs.
+### Senior Scientific Visualization Specialist · ParaView · VTK · Catalyst In-Situ
 
-## Projects
+[🌐 **Live portfolio site**](https://katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio/) · [GitHub repo](https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio)
 
-1. **[Turbulent flow visualization (Taylor-Green vortex)](projects/turbulent-flow-visualization/)** — analytic 3D vortex field, Q-criterion, RK4 streamlines, exported to `.vti`.
-2. **[FEM stress field](projects/fem-stress-field/)** — notched-cantilever beam tetrahedralised to 78k cells, σ + displacement attached, von Mises and warp-by-vector renders, exported to `.vtu`.
-3. **[Volumetric scalar field](projects/volumetric-scalar-field/)** — 96³ procedural atmospheric plume, GPU volume render with hand-tuned transfer function, isocontour view.
-4. **[ParaView custom plugin](projects/paraview-custom-plugin/)** — server-manager XML proxy + Python module: vorticity magnitude + automatic top-N seed extraction for Stream Tracer With Custom Source.
-5. **[Catalyst in-situ pipeline](projects/catalyst-in-situ/)** — Catalyst v2 adaptor with a toy time-stepping driver that contours, color-maps, and screenshots in-process.
+![ParaView](https://img.shields.io/badge/ParaView-5.13-2E7A7B) ![VTK](https://img.shields.io/badge/VTK-9.x-2E7A7B) ![Catalyst](https://img.shields.io/badge/Catalyst-v2%20in--situ-1F5A5B) ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white) ![CMake](https://img.shields.io/badge/CMake-3.27-064F8C?logo=cmake&logoColor=white) ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-## Repository layout
+*VTK-rendered Q-criterion, FEM stress fields, volumetric plumes, a ParaView plugin and a Catalyst in-situ pipeline — every figure regenerated headlessly from code.*
 
-```
-.
-├── docs/                            # GitHub Pages site (style.css, index.html, assets/)
-├── projects/                        # one README per project, links into scripts/ and assets/
-│   ├── turbulent-flow-visualization/
-│   ├── fem-stress-field/
-│   ├── volumetric-scalar-field/
-│   ├── paraview-custom-plugin/
-│   └── catalyst-in-situ/
-├── scripts/
-│   ├── python/                      # pure VTK — runs in CI, no ParaView needed
-│   ├── pvpython/                    # ParaView batch scripts (need pvpython/pvbatch)
-│   ├── plugin/                      # ParaView server-manager plugin
-│   └── catalyst/                    # Catalyst v2 adaptor + driver
-├── assets/
-│   ├── data/                        # generated .vti / .vtu (drop into ParaView)
-│   └── renders/                     # PNGs produced by scripts/python/render_figures.py
-└── .github/workflows/               # CI: install vtk, regenerate figures, deploy Pages
-```
+</div>
 
-## Quickstart
+---
+
+## Contents
+
+- [Highlighted projects](#highlighted-projects)
+- [Reproducibility](#reproducibility)
+- [Tech stack](#tech-stack)
+- [Editorial style](#editorial-style)
+- [Repo layout](#repo-layout)
+- [About the author](#about-the-author)
+- [Contact](#contact)
+
+---
+
+## Hero
+
+![Q-criterion isosurfaces of the Taylor-Green vortex rendered in VTK with viridis colour mapping on a dark background](docs/assets/q_isosurface.png)
+
+---
+
+## Highlighted projects
+
+| Project | Stack | What it proves |
+| :-- | :-- | :-- |
+| **[Turbulent flow visualization](projects/turbulent-flow-visualization/)** | Taylor-Green vortex | Analytic 3D vortex field, Q-criterion, RK4 streamlines, exported to `.vti`. |
+| **[FEM stress field](projects/fem-stress-field/)** | Notched cantilever | 78k tetrahedra with σ + displacement, von Mises + warp-by-vector renders, `.vtu`. |
+| **[Volumetric scalar field](projects/volumetric-scalar-field/)** | Atmospheric plume | 96³ procedural scalar, GPU volume render with hand-tuned transfer function. |
+| **[ParaView custom plugin](projects/paraview-custom-plugin/)** | Server-manager proxy | XML proxy + Python module for vorticity magnitude + automatic seed extraction. |
+| **[Catalyst in-situ pipeline](projects/catalyst-in-situ/)** | Catalyst v2 adaptor | Toy time-stepping driver that contours, colour-maps and screenshots in-process. |
+
+---
+
+## Reproducibility
 
 ```bash
 pip install vtk numpy
-python3 scripts/python/render_figures.py
-open assets/renders/q_isosurface.png
+python scripts/python/render_figures.py    # regenerates every PNG in docs/
 ```
 
-To open the generated datasets in ParaView:
+Pure VTK in `scripts/python/` runs in CI without ParaView; `scripts/pvpython/` covers the pvbatch flows; the plugin and Catalyst adaptor have their own CMake builds.
 
-```bash
-paraview assets/data/taylor_green.vti
-paraview assets/data/notched_beam.vtu
-paraview assets/data/plume.vti
+---
+
+## Tech stack
+
+- **ParaView & VTK** — ParaView 5.13 pipelines, pvpython / pvbatch, ParaView server-manager plugin authoring (XML proxy + Python module).
+- **In-situ** — Catalyst v2 adaptors, Conduit mesh descriptions, ADIOS2, timestep-driven screenshotting.
+- **Formats** — `.vti` / `.vtu` / `.pvd` / `.vtk` / `.pvtu` / `.cgns` / Exodus-II.
+- **Rendering** — Volume + iso + streamlines + warp-by-vector + glyphs · perceptual colour maps (viridis, cet_L17, cmocean).
+- **Build & CI** — CMake 3.27, GitHub Actions — installs `vtk`, runs every script, publishes Pages.
+
+---
+
+## Editorial style
+
+- **Palette** — teal `#2E7A7B` + amber `#D9A441` on ink `#0F1A1F` / paper `#FBFAF7`.
+- **Type** — Inter (UI) + JetBrains Mono (code, netlists, timecode).
+- **Determinism** — every generator is seeded; PNG, CSV and project-file bytes are stable across CI runs.
+- **Licensing** — every tool in the pipeline is FOSS. No commercial SDK in the dependency tree.
+
+---
+
+## Repo layout
+
+```
+scientific-visualization-paraview-portfolio/
+├── projects/                    # five case studies with their own READMEs
+├── scripts/python/              # pure VTK — runs in CI, no ParaView needed
+├── scripts/pvpython/            # pvpython / pvbatch flows
+├── scripts/plugin/              # ParaView server-manager plugin (XML + Python)
+├── scripts/catalyst/            # Catalyst v2 adaptor + driver
+├── docs/                        # GitHub Pages site
+└── .github/workflows/           # CI installs vtk, regenerates figures, deploys Pages
 ```
 
-## Stack
+---
 
-ParaView · VTK · Catalyst v2 · pvpython / pvbatch · OpenFOAM / SU2 / CGNS / EnSight Gold · XDMF · Python · C++17 · MPI · OSMesa / EGL · GitHub Actions · Docker.
+## About the author
 
-## License
+Senior scientific-visualisation specialist building ParaView and VTK pipelines for research and HPC teams — Q-criterion, FEM post-processing, volume rendering, server-manager plugins and Catalyst in-situ adaptors. I care about reproducible artefacts (every PNG from code), perceptual colour mapping, and pipelines that survive a version bump.
 
-MIT for code, CC-BY-4.0 for figures.
+Open to remote and contract engagements. This repository is the living portfolio companion to my CV.
+
+---
+
+## Contact
+
+- GitHub — [@katherinejenniferhsfeemster](https://github.com/katherinejenniferhsfeemster)
+- Live site — [katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio](https://katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio/)
+- Location — open to remote / contract
+
+---
+
+<div align="center">
+<sub>Built diff-first, editor-second. Every figure on this page is produced by code in this repo.</sub>
+</div>
