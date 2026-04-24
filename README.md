@@ -2,6 +2,8 @@
 
 # Scientific Visualization (ParaView) Portfolio
 
+**by Katherine Feemster**
+
 ### Senior Scientific Visualization Specialist · ParaView · VTK · Catalyst In-Situ
 
 [🌐 **Live portfolio site**](https://katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio/) · [GitHub repo](https://github.com/katherinejenniferhsfeemster/scientific-visualization-paraview-portfolio)
@@ -98,6 +100,8 @@ Open to remote and contract engagements. This repository is the living portfolio
 ---
 
 ## Contact
+
+**Katherine Feemster**
 
 - GitHub — [@katherinejenniferhsfeemster](https://github.com/katherinejenniferhsfeemster)
 - Live site — [katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio](https://katherinejenniferhsfeemster.github.io/scientific-visualization-paraview-portfolio/)
